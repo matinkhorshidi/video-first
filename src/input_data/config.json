@@ -1,0 +1,42 @@
+{
+	"save_path": "tmp/",
+	"texts": {
+		"start_text": ["IG STORIES FOR", "Your Travel", "JUST BUY IT"],
+		"middle_text": [
+			{
+				"main": "Your ",
+				"secondary": "GUIDE",
+				"last": "Travel",
+				"button_text": "MORE"
+			}
+		],
+		"end_text": ["Save Up To", "60%", "OFF", "FIND OUT MORE", "RELAX"]
+	},
+	"footages": [
+		"1.mp4",
+		"2.mp4",
+		"3.mp4",
+		"4.mp4",
+		"5.mp4",
+		"7.mp4",
+		"8.mp4",
+		"9.mp4",
+		"10.mp4"
+	],
+	"footage_first": 6,
+	"footage_second": 8,
+	"footage_last": 1,
+	"colors": {
+		"main": "#abdb40",
+		"secondary": "#ffff",
+		"third": "#2a4ae3",
+		"main_text": "#ffff",
+		"secondary_text": "#000"
+	},
+	"color": ["#142E54", "495B53", "EDEEF1", "#F4DB78"],
+	"fonts": {
+		"main_font": ["Pacifico", "cursive"],
+		"secondary_font": ["Edu NSW ACT Foundation"],
+		"simple_font": ["Ubuntu"]
+	}
+}

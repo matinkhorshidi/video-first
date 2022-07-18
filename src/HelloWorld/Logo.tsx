@@ -1,3 +1,4 @@
+import {Img} from 'remotion';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -5,10 +6,11 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import {Arc} from './Arc';
-import {Atom} from './Atom';
-
-export const Logo: React.FC = () => {
+import styled from 'styled-components';
+interface LogoProps {
+	imageSrc: string;
+}
+export const Logo: React.FC<LogoProps> = ({imageSrc}) => {
 	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
 
@@ -50,22 +52,15 @@ export const Logo: React.FC = () => {
 				transform: `scale(${scale}) rotate(${logoRotation}deg)`,
 			}}
 		>
-			<Arc
-				rotateProgress={rotationDevelopment}
-				progress={development}
-				rotation={30}
-			/>
-			<Arc
-				rotateProgress={rotationDevelopment}
-				rotation={90}
-				progress={development}
-			/>
-			<Arc
-				rotateProgress={rotationDevelopment}
-				rotation={-30}
-				progress={development}
-			/>
-			<Atom scale={rotationDevelopment} />
+			<Cover>
+				<Img src={imageSrc} style={{height: COVER_SIZE, width: COVER_SIZE}} />
+			</Cover>
 		</AbsoluteFill>
 	);
 };
+export const COVER_SIZE = 400;
+const Cover = styled.div`
+	width: ${COVER_SIZE}px;
+	height: ${COVER_SIZE}px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+`;
