@@ -73,8 +73,6 @@ export const Subtitle: React.FC<SubtitleProps> = ({
 						);
 					})}
 				</div>
-
-				<span style={{}}>{textTwo}</span>
 			</Sequence>
 		</>
 	);

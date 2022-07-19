@@ -1,24 +1,30 @@
-import {AbsoluteFill, Sequence, Video} from 'remotion';
+import {AbsoluteFill, Sequence, Video, Audio} from 'remotion';
 import './input_data/Fonts/font.css';
 
 import {Intro} from './Components/Intro/Intro';
 import {FirstPartTexes} from './Components/Texts/FirstPartTexes';
 import {SiteName} from './Components/Texts/SiteName';
-import {DeviderFromDown} from './Components/DeviderFromDown';
-import {SlideUpFromDown} from './Components/SlideUpFromDown';
+import {DeviderFromDown} from './Components/Effects/DeviderFromDown';
+import {SlideUpFromDown} from './Components/Effects/SlideUpFromDown';
 import {SecondPartTexes} from './Components/Texts/SecondPartTexes';
-import {DeviderFromRight} from './Components/DeviderFromRight';
-import {SlideFromRight} from './Components/SlideFromRight';
-import {Logo} from './Components/Logo';
-import {ContactUs} from './Components/ContactUs';
+import {DeviderFromRight} from './Components/Effects/DeviderFromRight';
+import {SlideFromRight} from './Components/Effects/SlideFromRight';
+import {Logo} from './Components/ContactUs/Logo';
+import {ContactUs} from './Components/ContactUs/ContactUs';
 import logoZebra from './input_data/logo_zebra_trans.png';
+import audio from './input_data/Sounds/ES_Back Bay - First Bassists.mp3';
 
 interface MainProps {
 	footages: string[];
 	footageFirst: number;
 	footageSecond: number;
 	footageLast: number;
-	colors: {main: string; main_text: string; secondary_text: string};
+	colors: {
+		main: string;
+		main_text: string;
+		third: string;
+		secondary_text: string;
+	};
 	texts: {
 		start_text: string[];
 		middle_text: {
@@ -51,7 +57,7 @@ export const Main: React.FC<MainProps> = ({
 			{/* 👇 Intro Component that Open a first Scene */}
 			<Intro color={colors.main}>
 				{/*  ✔️ PART One */}
-				<Sequence from={0} durationInFrames={150} name="FirstVideo">
+				<Sequence from={0} name="FirstVideo">
 					{/* 👇 BackGround Video */}
 					<Video
 						src={require(`./input_data/Videos/${footages[footageFirst]}`)}
@@ -68,6 +74,7 @@ export const Main: React.FC<MainProps> = ({
 					/>
 				</Sequence>
 				<Sequence from={15} name="FirstPartTexts">
+					{/* 👇 First Part Content */}
 					<FirstPartTexes
 						texts={texts.start_text}
 						textColors={colors}
@@ -75,11 +82,13 @@ export const Main: React.FC<MainProps> = ({
 					/>
 				</Sequence>
 				<Sequence from={75} name="SiteName">
+					{/* 👇 Footer of first Part */}
 					<SiteName
 						SiteAddress="www.zebracat.ai"
 						textColors={colors}
 						fonts={fonts}
 					/>
+					{/* 👇 Part Transition From Down */}
 					<DeviderFromDown color={colors.main} />
 				</Sequence>
 				{/*  ✔️✔️ PART TWO */}
@@ -88,7 +97,6 @@ export const Main: React.FC<MainProps> = ({
 					<SlideUpFromDown delay={0}>
 						<Video
 							src={require(`./input_data/Videos/${footages[footageSecond]}`)}
-							startFrom={15}
 							volume={0}
 							style={{
 								height: 1080,
@@ -102,16 +110,19 @@ export const Main: React.FC<MainProps> = ({
 					{/* 👇 SlideUpFromDown Colorized Devider for  Transition From Down */}
 				</Sequence>
 				<Sequence from={155} name="SecondPartTexts">
+					{/* 👇 Part Two Content */}
 					<SecondPartTexes
 						texts={texts.middle_text[0]}
 						textColors={colors}
 						fonts={fonts}
 					/>
+					{/* 👇 Part Transition From Right */}
 					<DeviderFromRight color={colors.main} />
 				</Sequence>
 				{/*  ✔️✔️✔️ PART Three */}
 				<Sequence from={330} name="LastPart">
 					<SlideFromRight>
+						{/* 👇 Main Content of part two */}
 						<ContactUs
 							texts={texts.end_text}
 							textColors={colors}
@@ -123,6 +134,8 @@ export const Main: React.FC<MainProps> = ({
 					</SlideFromRight>
 				</Sequence>
 			</Intro>
+			{/* 👇 Audio File */}
+			<Audio src={audio} startFrom={0} />
 		</AbsoluteFill>
 	);
 };

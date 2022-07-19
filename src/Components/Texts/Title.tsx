@@ -1,5 +1,3 @@
-import {continueRender, delayRender, staticFile} from 'remotion';
-
 import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
 

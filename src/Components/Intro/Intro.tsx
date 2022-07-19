@@ -25,8 +25,14 @@ export const Intro: React.FC<IntroProps> = (props) => {
 		},
 	});
 
-	const contentTranslationT = interpolate(upAnimation, [0, 1], [0, -650]);
-	const contentTranslationD = interpolate(upAnimation, [0, 1], [0, +650]);
+	const contentTranslationT = interpolate(upAnimation, [0, 1], [0, -650], {
+		extrapolateLeft: 'clamp',
+		extrapolateRight: 'clamp',
+	});
+	const contentTranslationD = interpolate(upAnimation, [0, 1], [0, +650], {
+		extrapolateLeft: 'clamp',
+		extrapolateRight: 'clamp',
+	});
 
 	return (
 		<>

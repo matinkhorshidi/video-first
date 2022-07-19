@@ -1,7 +1,6 @@
 {
-	"save_path": "tmp/",
 	"texts": {
-		"start_text": ["IG STORIES FOR", "Your Travel", "JUST BUY IT"],
+		"start_text": ["RE-INVENT", "The Future", "of Video Creation"],
 		"middle_text": [
 			{
 				"main": "Your ",
@@ -10,7 +9,12 @@
 				"button_text": "MORE"
 			}
 		],
-		"end_text": ["Save Up To", "60%", "OFF", "FIND OUT MORE", "RELAX"]
+		"end_text": [
+			"Video ads for products in all industries",
+			"60%",
+			"OFF",
+			"FIND OUT MORE"
+		]
 	},
 	"footages": [
 		"1.mp4",
@@ -33,7 +37,6 @@
 		"main_text": "#ffff",
 		"secondary_text": "#000"
 	},
-	"color": ["#142E54", "495B53", "EDEEF1", "#F4DB78"],
 	"fonts": {
 		"main_font": ["Pacifico", "cursive"],
 		"secondary_font": ["Edu NSW ACT Foundation"],

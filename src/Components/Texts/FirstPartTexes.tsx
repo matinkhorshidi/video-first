@@ -26,6 +26,7 @@ export const FirstPartTexes: React.FC<FirstPartTexesProps> = ({
 	const frame = useCurrentFrame();
 	const {width, height, fps} = useVideoConfig();
 
+	// 👇 animate for Scale center circle
 	const progress = spring({
 		frame: frame - 10,
 		fps,
@@ -35,6 +36,7 @@ export const FirstPartTexes: React.FC<FirstPartTexesProps> = ({
 	});
 	const scale = interpolate(progress, [0, 1], [0, 1]);
 
+	// 👇 animate for translation center circle
 	const UPSTART = 60;
 	const upAnimation = spring({
 		frame: frame - UPSTART,
@@ -43,18 +45,22 @@ export const FirstPartTexes: React.FC<FirstPartTexesProps> = ({
 			damping: 200,
 		},
 	});
-	const contentTranslation = interpolate(upAnimation, [0, 1], [0, -100]);
+	const contentTranslation = interpolate(upAnimation, [0, 1], [0, -100], {
+		extrapolateLeft: 'clamp',
+		extrapolateRight: 'clamp',
+	});
 
 	return (
 		<>
 			<Circle
 				style={{
-					opacity: progress,
 					left: width / 2 - CIRCLE_SIZE / 2,
 					top: height / 2 - CIRCLE_SIZE / 2,
+					opacity: progress,
 					transform: `scale(${scale}) translateY(${contentTranslation}px)`,
 				}}
 			>
+				{/* 👇 circle backGround */}
 				<AbsoluteFill
 					style={{
 						backgroundColor: 'rgb(0,0,0,0.7)',

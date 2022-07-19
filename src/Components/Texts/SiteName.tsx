@@ -16,8 +16,9 @@ export const SiteName: React.FC<SiteNameProps> = ({
 }) => {
 	const frame = useCurrentFrame();
 	const opacity = interpolate(frame, [0, 30], [0, 1]);
-	const {width, height, fps} = useVideoConfig();
+	const {width, fps} = useVideoConfig();
 
+	// 👇 animate for Transition Up Site Name
 	const upAnimation = spring({
 		frame,
 		fps,
@@ -27,6 +28,7 @@ export const SiteName: React.FC<SiteNameProps> = ({
 	});
 	const contentTranslation = interpolate(upAnimation, [0, 1], [0, -50]);
 
+	// 👇 Transition Between Two Part
 	const deviderAnimation = spring({
 		frame: frame - 50,
 		fps,
@@ -34,7 +36,6 @@ export const SiteName: React.FC<SiteNameProps> = ({
 			damping: 200,
 		},
 	});
-
 	const contentTranslationDevider = interpolate(
 		deviderAnimation,
 		[0, 1],
@@ -59,6 +60,7 @@ export const SiteName: React.FC<SiteNameProps> = ({
 				>
 					{SiteAddress}
 				</span>
+				{/* 👇 Transition Between Two Part */}
 				<span
 					style={{
 						position: 'absolute',

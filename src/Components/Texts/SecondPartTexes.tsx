@@ -5,7 +5,7 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import {SlideUpFromDown} from '../SlideUpFromDown';
+import {SlideUpFromDown} from '../Effects/SlideUpFromDown';
 
 interface SecondPartTexesProps {
 	texts: {main: string; secondary: string; last: string; button_text: string};
@@ -22,8 +22,8 @@ export const SecondPartTexes: React.FC<SecondPartTexesProps> = ({
 	const frame = useCurrentFrame();
 	const {height, fps} = useVideoConfig();
 
+	// 👇 Transition From Right For button Text
 	const LATESTART = 40;
-
 	const FromXAnimation = spring({
 		frame: frame - LATESTART,
 		fps,
@@ -34,16 +34,26 @@ export const SecondPartTexes: React.FC<SecondPartTexesProps> = ({
 	const contentTranslationFromRight = interpolate(
 		FromXAnimation,
 		[0, 1],
-		[0, -250]
+		[0, -250],
+		{
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		}
 	);
+	// 👇 Transition From Left For button
 	const contentTranslationFromLeft = interpolate(
 		FromXAnimation,
 		[0, 1],
-		[0, 750]
+		[0, 750],
+		{
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		}
 	);
 
 	return (
 		<>
+			{/* 👇 Texts initial Animation */}
 			<SlideUpFromDown delay={0}>
 				<span
 					style={{
@@ -53,7 +63,7 @@ export const SecondPartTexes: React.FC<SecondPartTexesProps> = ({
 						top: height / 2 + 80,
 						left: 50,
 						color: textColors.main_text,
-						fontFamily: fonts.main_font[1],
+						fontFamily: fonts.secondary_font[0],
 						fontWeight: 'bold',
 					}}
 				>
@@ -88,6 +98,7 @@ export const SecondPartTexes: React.FC<SecondPartTexesProps> = ({
 					{texts.last}
 				</span>
 			</SlideUpFromDown>
+			{/* 👇 Button */}
 			<AbsoluteFill
 				style={{
 					width: 300,
